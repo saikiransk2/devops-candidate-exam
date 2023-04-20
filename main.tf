@@ -1,6 +1,6 @@
 /* Private subnet */
 resource "aws_subnet" "PrivateSubnet" {
-  cidr_block = "10.0.1.0/24"
+  cidr_block = "10.0.40.0/24"
   vpc_id = data.aws_vpc.vpc.id
 
   tags = {
@@ -30,5 +30,6 @@ resource "aws_lambda_function" "lambda_function" {
   source_code_hash = data.archive_file.PyLambda.output_base64sha256
   handler          = "lambda_function.lambda_handler"
   role             = data.aws_iam_role.lambda.arn
-  runtime          = "python3.7" 
+  runtime          = "python3.9" 
+  timeout          = 10
 }
