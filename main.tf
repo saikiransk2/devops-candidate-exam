@@ -19,11 +19,11 @@ resource "aws_route_table" "PrivateRoute" {
 
 /* Lambda Function */
 resource "aws_lambda_function" "lambda_function" {
-  function_name    = "lambda_function"
+  function_name    = "lambdafn"
   filename         = "payload.zip"
   source_code_hash = data.archive_file.PyLambda.output_base64sha256
   role             = data.aws_iam_role.lambda.arn
   handler          = "lambda_function.lambda_handler" 
-  runtime          = "python3.7" 
-  timeout          = 40
+  runtime          = "python3.9" 
+  timeout          = 30
 }
