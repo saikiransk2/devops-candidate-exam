@@ -24,6 +24,6 @@ resource "aws_lambda_function" "lambda_function" {
   source_code_hash = data.archive_file.PyLambda.output_base64sha256
   role             = data.aws_iam_role.lambda.arn
   handler          = "lambda_function.lambda_handler" 
-  runtime          = "python3.9" 
+  runtime          = "python3.7" 
   timeout          = 40
 }
