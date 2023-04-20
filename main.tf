@@ -51,7 +51,7 @@ resource "aws_route_table" "PrivateRoute" {
 resource "aws_lambda_function" "lambda_function" {
   function_name    = "lambda_function"
   filename         = "payload.zip"
-  source_code_hash = data.archive_file.python_lambda_package.output_base64sha256
+  source_code_hash = data.archive_file.PyLambda.output_base64sha256
   handler          = "lambda_function.lambda_handler"
   role             = data.aws_iam_role.lambda.arn
   runtime          = "python3.7"
