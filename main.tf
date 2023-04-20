@@ -30,9 +30,5 @@ resource "aws_lambda_function" "lambda_function" {
   source_code_hash = data.archive_file.PyLambda.output_base64sha256
   handler          = "lambda_function.lambda_handler"
   role             = data.aws_iam_role.lambda.arn
-  runtime          = "python3.7"
-  vpc_config {
-    subnet_ids = [aws_subnet.PrivateSubnet.id]
-    security_group_ids = [aws_security_group.SecurityGroup.id]
-  }
+  runtime          = "python3.7" 
 }
