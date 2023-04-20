@@ -8,7 +8,6 @@ resource "aws_subnet" "PrivateSubnet" {
   }
 }
 
-
 /* archive */
 data "archive_file" "PyLambda" {  
   type = "zip"  
@@ -18,11 +17,7 @@ data "archive_file" "PyLambda" {
 
 /* Routing table for private subnet */
 resource "aws_route_table" "PrivateRoute" {
-  vpc_id = data.aws_vpc.vpc.id
-  route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = data.aws_nat_gateway.nat.id
-  }
+  vpc_id = data.aws_vpc.vpc.id  
   tags = {
     Name        = "PrivateRoute"    
   }
