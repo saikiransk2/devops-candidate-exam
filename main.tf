@@ -2,8 +2,6 @@
 resource "aws_subnet" "PrivateSubnet" {
   cidr_block = "10.0.201.0/24"
   vpc_id = data.aws_vpc.vpc.id
-  availability_zone = "ap-south-1a"
-
 }
 
 /* archive */
@@ -16,6 +14,19 @@ data "archive_file" "PyLambda" {
 /* Routing table for private subnet */
 resource "aws_route_table" "PrivateRoute" {
   vpc_id = data.aws_vpc.vpc.id  
+}
+
+/* Route table association */
+resource "aws_route_table_association" "private" {
+  subnet_id      = aws_subnet.private_subnet.id
+  route_table_id = aws_route_table.private.id
+}
+
+/* aws_route */
+resource "aws_route" "private_nat_gateway" {
+  route_table_id         = aws_route_table.private.id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = data.aws_nat_gateway.nat.id
 }
 
 /* Security Group */
