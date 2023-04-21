@@ -15,7 +15,9 @@ def lambda_handler(event, context):
     conn = http.client.HTTPSConnection("ij92qpvpma.execute-api.eu-west-1.amazonaws.com")
     conn.request('POST',url_path, data, headers)
     response = conn.getresponse()
+    print(response.read().decode())
     print(base64.b64encode(response.read()).decode('utf-8'))
+
     conn.close()
 
    
