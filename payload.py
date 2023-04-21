@@ -4,7 +4,7 @@ import base64
 
 def lambda_handler(event, context):
     url_path = "/candidate-email_serverless_lambda_stage/data"
-    headers = {"X-Siemens-Auth": "test"}
+    headers = {"X-Siemens-Auth": "test", "Content-Type": "application/json"}
     payload = {
         "subnet_id": "subnet-04625301f1d2eee6a",
         "name": "sai.kiran",
